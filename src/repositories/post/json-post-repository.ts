@@ -13,10 +13,24 @@ const JSON_POSTS_FILE_PATH = resolve(
 );
 
 export class JsonPostRepository implements PostRepository {
-  private async readFromDisk() {
+  private async readFromDisk(): Promise<postModel[]> {
     const jsonContent = await readFile(JSON_POSTS_FILE_PATH, "utf-8");
     const parsedJson = JSON.parse(jsonContent);
+    const { posts } = parsedJson;
+    return posts;
   }
 
-  async findAll(): Promise<postModel[]> {}
+  async findAll(): Promise<postModel[]> {
+    const posts = await this.readFromDisk();
+    return posts;
+  }
+
+  async findById(id: string): Promise<postModel> {
+    const posts = await this.findAll();
+    const post = posts.find((post) => post.id === id);
+
+    if (!post) throw new Error("Post not found");
+
+    return post;
+  }
 }
