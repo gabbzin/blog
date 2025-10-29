@@ -1,22 +1,23 @@
+import { Container } from "@/components/Container";
+import { Header } from "@/components/Header";
 import { PostsList } from "@/components/PostsList";
 import { SpinLoader } from "@/components/SpinLoader";
-import { postRepository } from "@/repositories/post";
 import { Suspense } from "react";
 
 export default async function Home() {
   return (
-    <div>
-      <header>
-        <h1>Aqui é o HEADER</h1>
-      </header>
+    <Container>
+      <Header>
+        
+      </Header>
       <main>
         <Suspense fallback={<SpinLoader />}>
           <PostsList />
         </Suspense>
       </main>
       <footer>
-        <h1>Aqui é o FOOTER</h1>
+        <h2>Aqui é o FOOTER</h2>
       </footer>
-    </div>
+    </Container>
   );
 }
