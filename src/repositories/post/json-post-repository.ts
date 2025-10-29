@@ -8,7 +8,6 @@ const JSON_POSTS_FILE_PATH = resolve(
   ROOT_DIR,
   "src",
   "db",
-  "seed",
   "posts.json"
 );
 
