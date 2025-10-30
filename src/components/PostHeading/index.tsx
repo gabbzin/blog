@@ -9,7 +9,7 @@ type PostHeadingProps = {
 
 const headingClassesMaps = {
   h1: "text-3xl/tight font-extrabold sm:text-5xl",
-  h2: "text-2xl/tight font-extrabold sm:text-4xl",
+  h2: "text-2xl/tight font-bold sm:text-2xl",
 };
 
 const commonClasses = "font-extrabold";
@@ -26,7 +26,7 @@ export function PostHeading({
 
   return (
     <Tag className={clsx(commonClasses, headingClassesMaps[Tag])}>
-      <Link href={url}>{children}</Link>
+      <Link className="group-hover:text-slate-600 group:transition" href={url}>{children}</Link>
     </Tag>
   );
 }
