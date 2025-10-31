@@ -4,12 +4,7 @@ import { resolve } from "path";
 import { readFile } from "fs/promises";
 
 const ROOT_DIR = process.cwd(); // Retorna o caminho da raiz do projeto
-const JSON_POSTS_FILE_PATH = resolve(
-  ROOT_DIR,
-  "src",
-  "db",
-  "posts.json"
-);
+const JSON_POSTS_FILE_PATH = resolve(ROOT_DIR, "src", "db", "posts.json");
 
 export class JsonPostRepository implements PostRepository {
   private async readFromDisk(): Promise<postModel[]> {
@@ -19,13 +14,13 @@ export class JsonPostRepository implements PostRepository {
     return posts;
   }
 
-  async findAll(): Promise<postModel[]> {
+  async findAllPublic(): Promise<postModel[]> {
     const posts = await this.readFromDisk();
-    return posts;
+    return posts.filter((p) => p.published);
   }
 
   async findById(id: string): Promise<postModel> {
-    const posts = await this.findAll();
+    const posts = await this.findAllPublic();
     const post = posts.find((post) => post.id === id);
 
     if (!post) throw new Error("Post not found");
