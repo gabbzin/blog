@@ -8,13 +8,8 @@ type PostSlugPageProps = {
 export default async function PostSlugPage({ params }: PostSlugPageProps) {
   const { slug } = await params;
 
-  let post;
-
-  try {
-    post = await findPostBySlugCached(slug); // Busca do post pelo slug (Rota dinâmica)
-  } catch {
-    post = undefined; // Em caso de erro, define post como undefined (para acionar a página 404)
-  }
+  const post = await findPostBySlugCached(slug).catch(() => undefined);
+  // Pode fazer o mesmo dentro da própria função findPostBySlugCached se preferir
 
   if (!post) {
     notFound();
