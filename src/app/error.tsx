@@ -17,8 +17,8 @@ export default function RootErrorPage({ error, reset }: RootErrorPageProps) {
   return (
     <ErrorMessage
       pageTitle="Erro ao carregar post"
-      contentTitle="500"
-      context="Erro 500: Ocorreu um erro ao carregar o post"
+      contentTitle="501"
+      context="Ocorreu um erro do qual a nossa aplicação não conseguiu se recuperar."
     />
   );
 }
