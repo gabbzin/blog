@@ -16,7 +16,7 @@ export default function RootErrorPage({ error, reset }: RootErrorPageProps) {
   // Reset é uma função que pode ser chamada para tentar recarregar a página ou componente que causou o erro.
   return (
     <ErrorMessage
-      pageTitle="Erro ao carregar post"
+      pageTitle="Erro desconhecido"
       contentTitle="501"
       context="Ocorreu um erro do qual a nossa aplicação não conseguiu se recuperar."
     />
