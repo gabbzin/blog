@@ -26,7 +26,9 @@ export function PostHeading({
 
   return (
     <Tag className={clsx(commonClasses, headingClassesMaps[Tag])}>
-      <Link className="group-hover:text-slate-600 group:transition" href={url}>{children}</Link>
+      <Link className="group-hover:text-slate-600 group:transition" href={url}>
+        {children}
+      </Link>
     </Tag>
   );
 }

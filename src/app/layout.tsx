@@ -13,16 +13,17 @@ export const metadata: Metadata = {
   description: "Blog criado com fins educativos",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+interface RootLayoutProps {
   children: React.ReactNode;
-}>) {
+}
+
+export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body>
         <Container>
           <Header />
+
           {children}
 
           <Footer />

@@ -1,44 +1,60 @@
-import { postModel } from "@/models/post/postModel";
-import { PostRepository } from "./postRepository";
-import { resolve } from "path";
-import { readFile } from "fs/promises";
+import { readFile } from "node:fs/promises";
+import { resolve } from "node:path";
+import type { PostModel } from "@/models/post/postModel";
+import type { PostRepository } from "./postRepository";
 
-const ROOT_DIR = process.cwd(); // Retorna o caminho da raiz do projeto
-const JSON_POSTS_FILE_PATH = resolve(ROOT_DIR, "src", "db", "posts.json");
+const ROOT_DIR = process.cwd();
+const JSON_POSTS_FILE_PATH = resolve(
+  ROOT_DIR,
+  "src",
+  "db",
+  "seed",
+  "posts.json",
+);
 const SIMULATE_WAIT_IN_MS = 0;
 
 export class JsonPostRepository implements PostRepository {
   private async simulateWait() {
-    return new Promise((resolve) => setTimeout(resolve, SIMULATE_WAIT_IN_MS));
+    if (SIMULATE_WAIT_IN_MS <= 0) return;
+
+    await new Promise(resolve => setTimeout(resolve, SIMULATE_WAIT_IN_MS));
   }
 
-  private async readFromDisk(): Promise<postModel[]> {
+  private async readFromDisk(): Promise<PostModel[]> {
     const jsonContent = await readFile(JSON_POSTS_FILE_PATH, "utf-8");
     const parsedJson = JSON.parse(jsonContent);
     const { posts } = parsedJson;
     return posts;
   }
 
-  async findAllPublic(): Promise<postModel[]> {
+  async findAllPublic(): Promise<PostModel[]> {
     await this.simulateWait();
+
     const posts = await this.readFromDisk();
-    return posts.filter((p) => p.published);
+    return posts.filter(post => post.published);
   }
 
-  async findById(id: string): Promise<postModel> {
-    const posts = await this.findAllPublic();
-    const post = posts.find((post) => post.id === id);
+  async findAll(): Promise<PostModel[]> {
+    await this.simulateWait();
 
-    if (!post) throw new Error("Post not found for ID");
+    const posts = await this.readFromDisk();
+    return posts;
+  }
+
+  async findById(id: string): Promise<PostModel> {
+    const posts = await this.findAllPublic();
+    const post = posts.find(post => post.id === id);
+
+    if (!post) throw new Error("Post não encontrado para ID");
 
     return post;
   }
 
-  async findBySlug(slug: string): Promise<postModel> {
+  async findBySlugPublic(slug: string): Promise<PostModel> {
     const posts = await this.findAllPublic();
-    const post = posts.find((post) => post.slug === slug);
+    const post = posts.find(post => post.slug === slug);
 
-    if (!post) throw new Error("Post not found for SLUG");
+    if (!post) throw new Error("Post não encontrado para slug");
 
     return post;
   }

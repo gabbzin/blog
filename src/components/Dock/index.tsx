@@ -1,10 +1,5 @@
 "use client";
-import {
-  GithubIcon,
-  Instagram,
-  Linkedin,
-  Mail,
-} from "lucide-react";
+import { GithubIcon, Instagram, Linkedin, Mail } from "lucide-react";
 import {
   Dock,
   DockIcon,

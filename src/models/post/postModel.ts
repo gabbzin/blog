@@ -1,4 +1,4 @@
-export type postModel = {
+export type PostModel = {
   id: string;
   title: string;
   slug: string;

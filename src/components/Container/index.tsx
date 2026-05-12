@@ -1,8 +1,6 @@
-
 type ContainerProps = {
-    children: React.ReactNode;
-}
-
+  children: React.ReactNode;
+};
 
 export function Container({ children }: ContainerProps) {
   return (

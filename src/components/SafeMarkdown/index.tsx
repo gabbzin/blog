@@ -21,7 +21,7 @@ export function SafeMarkdown({ markdown }: SafeMarkdownProps) {
         "prose-a:hover:text-blue-700",
         "prose-a:hover:underline",
         "prose-img:mx-auto",
-        "lg:prose-lg"
+        "lg:prose-lg",
       )}
     >
       <ReactMarkdown
