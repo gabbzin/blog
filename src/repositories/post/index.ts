@@ -1,4 +1,4 @@
-import { JsonPostRepository } from "./json-post-repository";
-import { PostRepository } from "./postRepository";
+import { DrizzlePostRepository } from "./drizzle-post-repository";
+import type { PostRepository } from "./postRepository";
 
-export const postRepository: PostRepository = new JsonPostRepository();
+export const postRepository: PostRepository = new DrizzlePostRepository();

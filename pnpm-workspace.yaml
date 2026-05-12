@@ -1,0 +1,12 @@
+allowBuilds:
+  better-sqlite3: true
+  core-js: true
+  esbuild: true
+  keccak: true
+  msw: true
+  scrypt: false
+  secp256k1: true
+  sha3: false
+  sharp: true
+  unrs-resolver: false
+  websocket: true
